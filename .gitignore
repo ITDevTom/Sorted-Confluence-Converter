@@ -1,0 +1,38 @@
+.Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.cache/
+.mypy_cache/
+.pytest_cache/
+
+# Environments
+.env
+.env.*
+!*.env.example
+.venv/
+venv/
+env/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Tooling
+.coverage
+coverage.xml
+htmlcov/
+
+# IDE settings
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Converter outputs
+out/
