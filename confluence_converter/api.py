@@ -5,8 +5,8 @@ from dataclasses import dataclass
 from typing import Dict, Iterable, Iterator, List, Optional
 
 import requests
+from requests import Session
 from requests.auth import HTTPBasicAuth
-from requests.session import Session
 
 LOG = logging.getLogger(__name__)
 
@@ -71,4 +71,3 @@ class ConfluenceClient:
                 seen.add(child_id)
                 queue.append(child_id)
                 yield child_id
-

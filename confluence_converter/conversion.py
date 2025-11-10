@@ -39,6 +39,9 @@ def _clean_html(html: str) -> BeautifulSoup:
         else:
             tag.decompose()
 
+    for tag in soup.find_all(["span", "div"]):
+        tag.unwrap()
+
     return soup
 
 
@@ -47,7 +50,6 @@ def _html_to_markdown(soup: BeautifulSoup) -> str:
     markdown = md(
         str(soup),
         heading_style="ATX",
-        strip=["span", "div"],
         convert=["table", "ol", "ul"],
     )
     markdown = re.sub(r"\n{3,}", "\n\n", markdown).strip()

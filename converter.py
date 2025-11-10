@@ -40,14 +40,23 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def env_or_default(args: argparse.Namespace) -> dict:
-    from distutils.util import strtobool
+def _strtobool(value: str) -> bool:
+    normalized = value.strip().lower()
+    truthy = {"y", "yes", "t", "true", "on", "1"}
+    falsy = {"n", "no", "f", "false", "off", "0"}
+    if normalized in truthy:
+        return True
+    if normalized in falsy:
+        return False
+    raise ValueError(f"Invalid truth value: {value}")
 
+
+def env_or_default(args: argparse.Namespace) -> dict:
     include_children_env = os.getenv("INCLUDE_CHILDREN", "true")
     include_children = (
         args.include_children
         if args.include_children is not None
-        else bool(strtobool(include_children_env))
+        else _strtobool(include_children_env)
     )
 
     config = {
